@@ -110,7 +110,7 @@ class Robot:
             else:
                 self.motor.set_rpm(speed * self.wheel_directions[can_id] * rpm_gain, can_id=can_id)
         elif control_by_current:
-            current_gain = 2
+            current_gain = 1.5
             if can_id == self.base_can_id:
                 self.motor.set_current(speed * self.wheel_directions[can_id] * current_gain, can_id=None)
             else:
@@ -142,9 +142,9 @@ if __name__ == "__main__":
         # 108: 0.0,
         # 76: 25.0,
         # 116: 115.0,
-        108: 0.0, 
-        76: 0.0,
-        116: 0.0,
+        108: -60.0, 
+        76: -60.0,
+        116: -60.0,
 
     }
     base_can_id = 108
@@ -156,9 +156,9 @@ if __name__ == "__main__":
         116: -1,
     }
     drive_wheel_directions = {
-        84: -1,
-        0: 1,
-        13: 1,
+        84: 1,
+        0: -1,
+        13: -1,
     }
     steer_rotation_mode_pos = {
         108: -90.0,
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     #     robot._set_position(id, 0.0)
 
     while True:
-        print(f"Joystick: {joystick.direction}, {joystick.speed}")
+        # print(f"Joystick: {joystick.direction}, {joystick.speed}")
         # input()
         controls["direction"] = joystick.direction * 360.0
         controls["speed"] = joystick.speed * 1.0
